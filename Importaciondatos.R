@@ -3,7 +3,7 @@
 
 
 # **Datos nacionales 1980 a 2020 ------------------------------------------
-library(readr)
+library(readr) 
 Nacionales_historico <- read_delim("6609.csv", 
                       delim = ";", escape_double = FALSE, trim_ws = TRUE)
 

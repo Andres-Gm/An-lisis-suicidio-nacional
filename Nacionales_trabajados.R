@@ -15,27 +15,28 @@ View(Nacionales_causas)
 #Hacemos comparativas de muertes por edades
 Nacionales_edad<-
   Nacionales_historico_filtro %>%
-  group_by(Edad)%>%
+  group_by(Edad)
 
 View(Nacionales_edad)
 
 #Hacemos comparativas de muertes por sexos
 Nacionales_sexo<-
   Nacionales_historico_filtro %>%
-  group_by(Sexo)%>%
+  group_by(Sexo)
 
 View(Nacionales_sexo)
 
 #Unimos por variables de 2 en 2
 Nacionales_Causas_Edades<-
   Nacionales_historico_filtro %>%
-  group_by(Causas, Edad)%>%
+  group_by(Causas, Edad)
 
 View(Nacionales_Causas_Edades)
 
 Nacionales_Causas_Sexo<-
   Nacionales_historico_filtro %>%
   group_by(Causas, Sexo)
+
 View(Nacionales_Causas_Sexo)
 
 Nacionales_Sexo_Edades<-
@@ -59,4 +60,5 @@ View(Nacionales_Edad_Periodo)
 Nacionales_Sexo_Periodo<-
   Nacionales_historico_filtro %>%
   group_by(Causas, Periodo)
+
 View(Nacionales_Sexo_Periodo)

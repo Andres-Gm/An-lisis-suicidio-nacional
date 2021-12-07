@@ -58,4 +58,3 @@ Cyl_todas<-
   group_by(Causas, Edad, Sexo)%>%
   summarise(across(where(is.numeric), ~ sum(.x, na.rm = TRUE)))  
 
-View(Cyl_todas)
