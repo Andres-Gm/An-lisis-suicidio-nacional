@@ -2,7 +2,7 @@
 #Reducimos a la columna de muertes para trabajar desde ella
 #Renombramos las columnas para que sea mas comodo trabajar con ellas
 names (Internacionales_2019) = c("Causas", "Sexo", "Nacionalidad", "Total")
-
+View(Internacionales_2019)
 #Dividimos por causas para encontrar las sumas de cada causa y compararlas con las tasas de suicidio
 Internacionales_causas<-
   Internacionales_2019 %>%
