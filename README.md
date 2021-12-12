@@ -17,10 +17,10 @@ trabajo. Posteriormente hemos separado los datos de CyL en sexo, edad y provinci
 los datos nacionales en sexo, edad y año y los internacionales en sexo, edad y 
 nacionalidad para hacer comparaciones con cada uno de los factores.
 
-El siguiente paso que hemos dado ha sido **graficar** algunos ejemplos para así demostar
+El siguiente paso que hemos dado ha sido **graficar** algunos ejemplos para así demostrar
 de una forma visual, las conclusiones a las que hemos llegado.
 
 Finalmente hemos obtenido que el suicidio es una de las principales causas de muerte, como
 ya veníamos diciendo anteriormente, y que además parece que se va incrementando con el
-paso de los años. Según los datos es más frecuente en varones jóvenes y en países con
+paso de los años. Según los datos, es más frecuente en varones jóvenes y en países con
 con niveles socioeconómicos medios-altos.
