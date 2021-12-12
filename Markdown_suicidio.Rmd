@@ -51,14 +51,14 @@ Por último hemos y con el propósito de llevar a cabo una interpretación de lo
 Al estudiar los datos internacionales encontramos problemas con los datos de ciertos países, que resultan inverosímiles o inexistentes, además de que algunos países marcan los decimales distinto, por lo que las cifras parecen mucho más altas de lo que realmente son, debido a esto estudiamos sólo los datos referentes a 5 países, encontrando entre ellos variaciones continentales y de nivel socioeconómico, para que aún siendo una muestra demasiado pequeña como para extraer conclusiones, sea relevante.
 
 ```{r internacional, echo=FALSE, fig.cap="A caption", out.width = '100%'}
-knitr::include_graphics("tasas_internacionales.png")
+knitr::include_graphics("tasas_internacionales1.png")
 ```
 
 #### Estudio datos Castilla y León
 En el caso de los datos referentes a Castilla y León hemos querido incidir en la separación por sexo y edad, los datos revelan una significativamente mayor tasa de suicidio dentro del sexo masculino, y unos datos que no coinciden con las pirámides poblacionales referentes a Castilla y León en 2019, dado que encontramos una tasa mucho más alta de lo esperable en edades relativamente jóvenes.
 
 ```{r cyl, echo=FALSE, fig.cap="A caption", out.width = '100%'}
-knitr::include_graphics("tasas_cyl.png")
+knitr::include_graphics("tasas_cyl1.png")
 ```
 
 #### Estudio datos nacionales
@@ -67,7 +67,7 @@ A la hora de trabajar con los datos nacionales hemos tomado la decisión de filt
 La decisión tomada finalmente es estudiar los datos divididos por sexos en función del año, y estos datos muestran que el suicidio se mantiene como una causa de muerte más presente en la población masculina y en los últimos años aumenta la tasa de suicidios general.
 
 ```{r nacional, echo=FALSE, fig.cap="A caption", out.width = '100%'}
-knitr::include_graphics("Tasas_nacionales.png")
+knitr::include_graphics("Tasas_nacionales1.png")
 ```
 
 
