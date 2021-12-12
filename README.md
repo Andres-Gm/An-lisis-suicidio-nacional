@@ -5,7 +5,7 @@ debido a que es una de las _principales causas de muerte_ en nuestro país.
 
 En primer lugar hemos procedido a la __búsqueda de los datos__, que finalmente 
 han sido obtenidos de los datos abiertos que proporciona el Gobierno de España y
-el INE (Instituto Nacional de Estadística) hemos optado por recoger datos de 
+el INE (Instituto Nacional de Estadística). Hemos optado por recoger datos de 
 nuestra comunidad autónoma (Castilla y León), datos nacionales e internacionales
 para realizar comparaciones entre ellos.
 Tras haber seleccionado los datos, los hemos cargado y hemos comenzado a 
