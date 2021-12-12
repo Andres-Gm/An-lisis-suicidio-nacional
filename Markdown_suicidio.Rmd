@@ -12,11 +12,11 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Presentación del proyecto
 
-Presentamos nuestro proyecto sobre ánalisis de datos de fallecimientos a nivel nacional de 2019 en comparación con los datos mundiales y con los de Castilla y León, centrándonos sobretodo en los datos referentes a muertes debidas a suicidio o a lesiones autoinfligidas.
+Presentamos nuestro proyecto sobre **ánalisis de datos de fallecimientos a nivel nacional** de 2019 en comparación con los datos mundiales y con los de Castilla y León, centrándonos sobretodo en los datos referentes a muertes debidas a __suicidio o a lesiones autoinfligidas__.
 
 ## Obtención de los datos
 
-Todos los datos trabajados en este proyecto han sido extraídos de las bases de datos contenidas por el INE (Instituto Nacional de Estadística) y los datos gubernamentales, que están disponibles al ser datos abiertos. 
+Todos los datos trabajados en este proyecto han sido extraídos de las bases de datos contenidas por el *INE* (Instituto Nacional de Estadística) y los _datos gubernamentales_, que están disponibles al ser datos abiertos. 
 
 Los datos en cuestión pueden encontrarse también subidos en el repositorio en que se encuentra nuestro proyecto en GitHub, y son los correspondientes a:
 
@@ -28,7 +28,7 @@ Los datos en cuestión pueden encontrarse también subidos en el repositorio en 
 
 ## Métodos de análisis de datos
 ### Importación de los datos
-El primer paso que hemos llevado a cabo ha sido la descarga e importación de los datos en nuestro proyecto, con un código similar al siguiente que tiene como única variación los nombres de los datos importados.
+El primer paso que hemos llevado a cabo ha sido la **descarga e importación de los datos** en nuestro proyecto, con un código similar al siguiente que tiene como única variación los nombres de los datos importados.
 ```{r eval=FALSE}
 Nacionales_historico <- read_delim("6609.csv", 
                       delim = ";", escape_double = FALSE, trim_ws = TRUE)
@@ -39,13 +39,13 @@ View(Nacionales_historico)
 ```
 
 ### Separación de datos por categorías
-La separación de datos en los tres diferentes trabajados ha sido llevada a cabo de manera muy similar, filtrando cada base de datos en función de sus características para obtener datos generales ya interpretables para comenzar a graficar.
+La __separación de datos__ en los tres diferentes trabajados ha sido llevada a cabo de manera muy similar, filtrando cada base de datos en función de sus características para obtener datos generales ya interpretables para comenzar a graficar.
 
 ### Separación por causa
-Al haber interpretado todos los datos de fallecimiento de todas las maneras posibles con los datos trabajados, hemos procedido a filtrar por causa de la muerte dejando únicamente los datos relacionados con el suicidio para proceder a su interpretación.
+Al haber interpretado todos los datos de fallecimiento de todas las maneras posibles con los datos trabajados, hemos procedido a **filtrar por causa de la muerte** dejando únicamente los datos relacionados con el suicidio para proceder a su interpretación.
 
 ### Creación de gráficos
-Por último hemos y con el propósito de llevar a cabo una interpretación de los datos más relevantes por separado, hemos graficado algunos ejemplos para ilustrar las conclusiones que queremos exponer.
+Por último hemos y con el propósito de llevar a cabo una interpretación de los datos más relevantes por separado, hemos __graficado__ algunos ejemplos para ilustrar las conclusiones que queremos exponer.
 
 #### Estudio datos internacionales
 Al estudiar los datos internacionales encontramos problemas con los datos de ciertos países, que resultan inverosímiles o inexistentes, además de que algunos países marcan los decimales distinto, por lo que las cifras parecen mucho más altas de lo que realmente son, debido a esto estudiamos sólo los datos referentes a 5 países, encontrando entre ellos variaciones continentales y de nivel socioeconómico, para que aún siendo una muestra demasiado pequeña como para extraer conclusiones, sea relevante.
@@ -72,7 +72,7 @@ knitr::include_graphics("Tasas_nacionales.png")
 
 
 ## Interpretación de los datos
- Pese a que los datos no están suficientemente analizados como para sacar conclusiones contundentes, este análisis de datos nos permite concluir que el suicidio es una causa de muerte que se incrementa con el paso de los años, se da especialmente en hombres, cada vez más en jóvenes y más en países con niveles socioeconómicos medios-altos, además de ser una causa de muerte de la cual muchos países no parecen hacer públicos datos fiables.
+ Pese a que los datos no están suficientemente analizados como para sacar conclusiones contundentes, este análisis de datos nos permite concluir que **el suicidio es una causa de muerte que se incrementa con el paso de los años**, se da especialmente en __hombres__, cada vez más en **jóvenes** y más en **países con niveles socioeconómicos medios-altos**, además de ser una causa de muerte de la cual muchos países no parecen hacer públicos datos fiables.
  
  Con estas conclusiones defendemos que el suicidio debe dejar de ser un tabú social, y se deben hacer campañas de prevención y apoyo a la salud mental, especialmente en jóvenes y en varones.
  
