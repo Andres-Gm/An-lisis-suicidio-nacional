@@ -91,6 +91,14 @@ knitr::include_graphics("tasas55a_nacional.png")
  
  Con estas conclusiones defendemos que el suicidio debe dejar de ser un tabú social, y se deben hacer campañas de prevención y apoyo a la salud mental, especialmente en jóvenes y en varones.
  
+```{r final, echo=FALSE, out.width = '50%'}
+knitr::include_graphics("image001.jpg")
+knitr::include_graphics("image003.jpg")
+``` 
+```{r final2, echo=FALSE, out.width = '100%'}
+knitr::include_graphics("image004.jpg")
+``` 
+ 
  Algunos enlaces de interés sobre el tema trabajado y de carácter informativo o de apoyo:
  
 + <https://medlineplus.gov/spanish/ency/article/001554.htm>.
