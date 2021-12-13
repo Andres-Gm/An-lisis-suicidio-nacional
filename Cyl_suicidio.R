@@ -12,10 +12,12 @@ View(Cyl_suicidio)
 Cyl_provincia<-
   Cyl_suicidio %>%
   group_by(Provincias)%>%
-  filter(., Provincias != "Castilla y León")  
+  filter(., Provincias != "Castilla y León")%>%
+  filter(., Sexo != "Ambos sexos")
 
-ggplot(data = Cyl_provincia, aes(x = Provincias, y = Total)) +
-  geom_bar(stat='identity')
+ggplot(data = Cyl_provincia, aes(x = Provincias, y = Total, fill = Sexo)) +
+  geom_col(position ='dodge')
+
  
 View(Cyl_provincia)
 
