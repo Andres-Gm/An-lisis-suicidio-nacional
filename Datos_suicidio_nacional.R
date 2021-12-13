@@ -57,6 +57,14 @@ Nacionales_Sexo_Edades$Edad[Nacionales_Sexo_Edades$Edad == "95 y más años"] <-
 
 View(Nacionales_Sexo_Edades)
 
+Nacionales_55 <- Nacionales_suicidio%>%
+  filter(., Edad == "De 50 a 54 años")%>%
+  filter(., Sexo != "Total")
+
+ggplot(data = Nacionales_55, aes(x = Periodo, y = Total, fill = Sexo)) +
+  geom_col(position = "dodge") + geom_smooth(method = "loess", colour = "red")
+
+
 ggplot(data = Nacionales_Sexo_Edades, aes(x = Edad, y = Total, fill = Sexo)) +
   geom_col(position = "dodge") 
 
