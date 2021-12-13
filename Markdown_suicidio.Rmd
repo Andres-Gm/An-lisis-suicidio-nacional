@@ -59,8 +59,16 @@ knitr::include_graphics("tasas_internacionales1.png")
 #### Estudio datos Castilla y León
 En el caso de los datos referentes a Castilla y León hemos querido incidir en la separación por sexo y edad, los datos revelan una significativamente mayor tasa de suicidio dentro del sexo masculino, y unos datos que no coinciden con las pirámides poblacionales referentes a Castilla y León en 2019, dado que encontramos una tasa mucho más alta de lo esperable en edades relativamente jóvenes.
 
+```{r cyl2, echo=FALSE, out.width = '100%'}
+knitr::include_graphics("image002.jpg")
+```
+
 ```{r cyl, echo=FALSE, fig.cap="Tasas en Castilla y León", out.width = '100%'}
 knitr::include_graphics("tasas_cyl1.png")
+```
+
+```{r cyl3, echo=FALSE, out.width = '100%'}
+knitr::include_graphics("provincias.png")
 ```
 
 #### Estudio datos nacionales
@@ -74,7 +82,7 @@ knitr::include_graphics("Tasas_nacionales1.png")
 
 Ahora nos centramos en un  rango de edad concreto y lo analizamos a lo largo de los años, desde el 2005 al 2020 y comprobamos como a medida que pasan los años el número de suicidios incrementa tanto en hombres como en mujeres.
 
-```{r nacional2, echo=FALSE, fig.cap="Tasas en personas de entre 55 y 59 años", out.width = '100%'}
+```{r nacional2, echo=FALSE, fig.cap="Tasas en personas de entre 50 y 54 años", out.width = '100%'}
 knitr::include_graphics("tasas55a_nacional.png")
 ```
 
