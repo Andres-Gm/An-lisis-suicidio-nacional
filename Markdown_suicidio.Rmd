@@ -52,8 +52,32 @@ Por último hemos y con el propósito de llevar a cabo una interpretación de lo
 #### Estudio datos internacionales
 Al estudiar los datos internacionales encontramos problemas con los datos de ciertos países, que resultan inverosímiles o inexistentes, además de que algunos países marcan los decimales distinto, por lo que las cifras parecen mucho más altas de lo que realmente son, debido a esto estudiamos sólo los datos referentes a 5 países, encontrando entre ellos variaciones continentales y de nivel socioeconómico, para que aún siendo una muestra demasiado pequeña como para extraer conclusiones, sea relevante.
 
-```{r internacional, echo=FALSE, fig.cap="Tasas internacionales", out.width = '100%'}
-knitr::include_graphics("tasas_internacionales1.png")
+```{r, fig.width=12, fig.height=7, warning=FALSE, message=FALSE}
+library(ggplot2)
+library(readr)
+library(tidyverse)
+
+Internacionales_2019 <- read_delim("./INPUT/01002b.csv", 
+                                   delim = ";", escape_double = FALSE, trim_ws = TRUE)
+
+names (Internacionales_2019) = c("Causas", "Sexo", "Nacionalidad", "Total")
+
+Internacionales_suicidio<-filter(Internacionales_2019, (Causas=="098 Suicidio y lesiones autoinfligidas"))
+nacionalidades <- c("Alemania","Marruecos","Colombia","Uruguay","Dinamarca")
+df_nacionalidades <- data.frame(nacionalidades)
+names(df_nacionalidades) <- c("Nacionalidad")
+
+Internacionales_Nacionalidad_Sexo_f<-
+  Internacionales_suicidio %>%
+  group_by(Nacionalidad, Sexo)%>%
+  filter(., Sexo != "Ambos sexos")%>%
+  summarise(across(where(is.numeric), ~ sum(.x, na.rm = TRUE)))
+
+Internacionales_Nacionalidad_Sexo_filtrados <- left_join(df_nacionalidades, Internacionales_Nacionalidad_Sexo_f,
+                                                         by = c("Nacionalidad" = "Nacionalidad"))
+
+ggplot(data = Internacionales_Nacionalidad_Sexo_filtrados, aes(x = Nacionalidad, y = Total, fill = Sexo)) +
+  geom_col(position = "dodge")
 ```
 
 #### Estudio datos Castilla y León
@@ -63,12 +87,60 @@ En el caso de los datos referentes a Castilla y León hemos querido incidir en l
 knitr::include_graphics("image002.jpg")
 ```
 
-```{r cyl, echo=FALSE, fig.cap="Tasas en Castilla y León", out.width = '100%'}
-knitr::include_graphics("tasas_cyl1.png")
+
+```{r, fig.width=12, fig.height=7, warning=FALSE, message=FALSE}
+library(ggplot2)
+library(readr)
+library(tidyverse)
+Cyl_2019 <- read_delim("./INPUT/02008.csv", 
+                                   delim = ";", escape_double = FALSE, trim_ws = TRUE)
+
+names (Cyl_2019) = c("Provincias", "Causas", "Sexo", "Edad", "Total")
+
+Cyl_suicidio<-filter(Cyl_2019, (Causas=="098 Suicidio y lesiones autoinfligidas"))
+
+Cyl_Sexo_Edades<-
+  Cyl_suicidio %>%
+  group_by(Sexo, Edad)%>%
+  summarise(across(where(is.numeric), ~ sum(.x, na.rm = TRUE)))%>%
+  filter(., Sexo != "Ambos sexos")%>%
+  filter(., Edad != "Todas las edades")%>%
+  filter(., Edad != "Menores de 1 año")
+
+
+Cyl_Sexo_Edades$Edad[ Cyl_Sexo_Edades$Edad == "De 1 a 14 años"] <- "1 - 14"
+Cyl_Sexo_Edades$Edad[ Cyl_Sexo_Edades$Edad == "De 15 a 29 años"] <- "15 - 29"
+Cyl_Sexo_Edades$Edad[ Cyl_Sexo_Edades$Edad == "De 30 a 39 años"] <- "30 - 39"
+Cyl_Sexo_Edades$Edad[ Cyl_Sexo_Edades$Edad == "De 40 a 44 años"] <- "40 - 44"
+Cyl_Sexo_Edades$Edad[ Cyl_Sexo_Edades$Edad == "De 45 a 49 años"] <- "45 - 49"
+Cyl_Sexo_Edades$Edad[ Cyl_Sexo_Edades$Edad == "De 50 a 54 años"] <- "50 - 54"
+Cyl_Sexo_Edades$Edad[ Cyl_Sexo_Edades$Edad == "De 55 a 59 años"] <- "55 - 59"
+Cyl_Sexo_Edades$Edad[ Cyl_Sexo_Edades$Edad == "De 60 a 64 años"] <- "60 - 64"
+Cyl_Sexo_Edades$Edad[ Cyl_Sexo_Edades$Edad == "De 65 a 69 años"] <- "65 - 69"
+Cyl_Sexo_Edades$Edad[ Cyl_Sexo_Edades$Edad == "De 70 a 74 años"] <- "70 - 74"
+Cyl_Sexo_Edades$Edad[ Cyl_Sexo_Edades$Edad == "De 75 a 79 años"] <- "75 - 79"
+Cyl_Sexo_Edades$Edad[ Cyl_Sexo_Edades$Edad == "De 80 a 84 años"] <- "80 - 84"
+Cyl_Sexo_Edades$Edad[ Cyl_Sexo_Edades$Edad == "De 85 a 89 años"] <- "85 - 89"
+Cyl_Sexo_Edades$Edad[ Cyl_Sexo_Edades$Edad == "De 90 a 94 años"] <- "90 - 94"
+Cyl_Sexo_Edades$Edad[ Cyl_Sexo_Edades$Edad == "De 95 años y más"] <- "95 o más"
+
+ggplot(data = Cyl_Sexo_Edades, aes(x = Edad, y = Total, fill = Sexo)) +
+  geom_col(position = "dodge")
+
 ```
 
-```{r cyl3, echo=FALSE, out.width = '100%'}
-knitr::include_graphics("provincias.png")
+
+
+```{r, fig.width=12, fig.height=7, warning=FALSE, message=FALSE}
+
+Cyl_provincia<-
+  Cyl_suicidio %>%
+  group_by(Provincias)%>%
+  filter(., Provincias != "Castilla y León")%>%
+  filter(., Sexo != "Ambos sexos")
+
+ggplot(data = Cyl_provincia, aes(x = Provincias, y = Total, fill = Sexo)) +
+  geom_col(position ='dodge')
 ```
 
 #### Estudio datos nacionales
@@ -76,14 +148,62 @@ A la hora de trabajar con los datos nacionales hemos tomado la decisión de filt
 
 La decisión tomada finalmente es estudiar los datos divididos por sexos en función del año, y estos datos muestran que el suicidio se mantiene como una causa de muerte más presente en la población masculina y en los últimos años aumenta la tasa de suicidios general.
 
-```{r nacional, echo=FALSE, fig.cap="Tasas nacionales", out.width = '100%'}
-knitr::include_graphics("Tasas_nacionales1.png")
+
+```{r, fig.width=12, fig.height=7, warning=FALSE, message=FALSE}
+
+Nacionales_historico <- read_delim("./INPUT/6609.csv", 
+                      delim = ";", escape_double = FALSE, trim_ws = TRUE)
+
+names (Nacionales_historico) = c("Causas", "Sexo", "Edad", "Periodo", "Total")
+Nacionales_historico_filtro<-filter(Nacionales_historico, (Periodo>2005))
+
+Nacionales_suicidio<-filter(Nacionales_historico_filtro, (Causas=="098  Suicidio y lesiones autoinfligidas"))
+
+Nacionales_Sexo_Edades<-
+  Nacionales_suicidio %>%
+  group_by(Sexo, Edad)%>%
+  filter(., Sexo != "Total")%>%
+  filter(., Edad != "Todas las edades")%>%
+  arrange(., desc(Edad))
+
+Nacionales_Sexo_Edades$Edad[Nacionales_Sexo_Edades$Edad == "Menos de 1 año"] <- ".0 - 1"
+Nacionales_Sexo_Edades$Edad[Nacionales_Sexo_Edades$Edad == "De 1 a 4 años"] <- ".1 - 4"
+Nacionales_Sexo_Edades$Edad[Nacionales_Sexo_Edades$Edad == "De 5 a 9 años"] <- ".5 - 9"
+Nacionales_Sexo_Edades$Edad[Nacionales_Sexo_Edades$Edad == "De 10 a 14 años"] <- "10 - 14"
+Nacionales_Sexo_Edades$Edad[Nacionales_Sexo_Edades$Edad == "De 15 a 19 años"] <- "15 - 19"
+Nacionales_Sexo_Edades$Edad[Nacionales_Sexo_Edades$Edad == "De 20 a 24 años"] <- "20 - 24"
+Nacionales_Sexo_Edades$Edad[Nacionales_Sexo_Edades$Edad == "De 25 a 29 años"] <- "25 - 29"
+Nacionales_Sexo_Edades$Edad[Nacionales_Sexo_Edades$Edad == "De 30 a 34 años"] <- "30 - 34"
+Nacionales_Sexo_Edades$Edad[Nacionales_Sexo_Edades$Edad == "De 35 a 39 años"] <- "35 - 39"
+Nacionales_Sexo_Edades$Edad[Nacionales_Sexo_Edades$Edad == "De 40 a 44 años"] <- "40 - 44"
+Nacionales_Sexo_Edades$Edad[Nacionales_Sexo_Edades$Edad == "De 45 a 49 años"] <- "45 - 49"
+Nacionales_Sexo_Edades$Edad[Nacionales_Sexo_Edades$Edad == "De 50 a 54 años"] <- "50 - 54"
+Nacionales_Sexo_Edades$Edad[Nacionales_Sexo_Edades$Edad == "De 55 a 59 años"] <- "55 - 59"
+Nacionales_Sexo_Edades$Edad[Nacionales_Sexo_Edades$Edad == "De 60 a 64 años"] <- "60 - 64"
+Nacionales_Sexo_Edades$Edad[Nacionales_Sexo_Edades$Edad == "De 65 a 69 años"] <- "65 - 69"
+Nacionales_Sexo_Edades$Edad[Nacionales_Sexo_Edades$Edad == "De 70 a 74 años"] <- "70 - 74"
+Nacionales_Sexo_Edades$Edad[Nacionales_Sexo_Edades$Edad == "De 75 a 79 años"] <- "75 - 79"
+Nacionales_Sexo_Edades$Edad[Nacionales_Sexo_Edades$Edad == "De 80 a 84 años"] <- "80 - 84"
+Nacionales_Sexo_Edades$Edad[Nacionales_Sexo_Edades$Edad == "De 85 a 89 años"] <- "85 - 89"
+Nacionales_Sexo_Edades$Edad[Nacionales_Sexo_Edades$Edad == "De 90 a 94 años"] <- "90 - 94"
+Nacionales_Sexo_Edades$Edad[Nacionales_Sexo_Edades$Edad == "95 y más años"] <- "95 o más"
+
+ggplot(data = Nacionales_Sexo_Edades, aes(x = Edad, y = Total, fill = Sexo)) +
+  geom_col(position = "dodge") 
 ```
+
 
 Ahora nos centramos en un  rango de edad concreto y lo analizamos a lo largo de los años, desde el 2005 al 2020 y comprobamos como a medida que pasan los años el número de suicidios incrementa tanto en hombres como en mujeres.
 
-```{r nacional2, echo=FALSE, fig.cap="Tasas en personas de entre 50 y 54 años", out.width = '100%'}
-knitr::include_graphics("tasas55a_nacional.png")
+
+```{r, fig.width=12, fig.height=7, warning=FALSE, message=FALSE}
+
+
+Nacionales_50 <- Nacionales_suicidio%>%
+  filter(., Edad == "De 50 a 54 años")%>%
+  filter(., Sexo != "Total")
+ggplot(data = Nacionales_50, aes(x = Periodo, y = Total, fill = Sexo)) +
+geom_col(position = "dodge") + geom_smooth(method = "loess", colour = "red")
 ```
 
 ## Interpretación de los datos
