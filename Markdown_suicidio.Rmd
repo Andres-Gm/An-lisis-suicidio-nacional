@@ -43,11 +43,31 @@ View(Nacionales_historico)
 ### Separación de datos por categorías
 La __separación de datos__ en los tres diferentes trabajados ha sido llevada a cabo de manera muy similar, filtrando cada base de datos en función de sus características para obtener datos generales ya interpretables para comenzar a graficar.
 
-### Separación por causa
-Al haber interpretado todos los datos de fallecimiento de todas las maneras posibles con los datos trabajados, hemos procedido a **filtrar por causa de la muerte** dejando únicamente los datos relacionados con el suicidio para proceder a su interpretación.
+Como primer ejemplo, los datos referentes a Castilla y León  **filtrados por causa de la muerte** se han subdividido con el siguiente código:
+
+```{r eval=FALSE}
+Cyl_causas<-
+  Cyl_2019 %>%
+  group_by(Causas)%>%
+  filter(n() > 1)%>%
+  summarise(across(where(is.numeric), ~ sum(.x, na.rm = TRUE)))  
+View(Cyl_causas)
+```
+Tras esto, se ha repetido el proceso uniendo las categorías de 2 en 2 o de 3 en 3 para la obtención de distintas tablas.
+Este es un ejemplo siguiendo con los datos de Castilla y León por causas y añadiendo la variable de edad:
+```{r eval=FALSE}
+Cyl_Causas_Edades<-
+  Cyl_2019 %>%
+  group_by(Causas, Edad)%>%
+  summarise(across(where(is.numeric), ~ sum(.x, na.rm = TRUE)))  
+
+View(Cyl_Causas_Edades)
+```
 
 ### Creación de gráficos
 Por último hemos y con el propósito de llevar a cabo una interpretación de los datos más relevantes por separado, hemos __graficado__ algunos ejemplos para ilustrar las conclusiones que queremos exponer.
+
+El código utilizado para crear los gráficos varía en función de las variables involucradas,y se puede observar en las líneas posteriores correspondientes al RMarkdown que ha generado este documento html.
 
 #### Estudio datos internacionales
 Al estudiar los datos internacionales encontramos problemas con los datos de ciertos países, que resultan inverosímiles o inexistentes, además de que algunos países marcan los decimales distinto, por lo que las cifras parecen mucho más altas de lo que realmente son, debido a esto estudiamos sólo los datos referentes a 5 países, encontrando entre ellos variaciones continentales y de nivel socioeconómico, para que aún siendo una muestra demasiado pequeña como para extraer conclusiones, sea relevante.
@@ -210,6 +230,8 @@ geom_col(position = "dodge") + geom_smooth(method = "loess", colour = "red")
  Pese a que los datos no están suficientemente analizados como para sacar conclusiones contundentes, este análisis de datos nos permite concluir que **el suicidio es una causa de muerte que se incrementa con el paso de los años**, se da especialmente en __hombres__, cada vez más en **jóvenes** y más en **países con niveles socioeconómicos medios-altos**, además de ser una causa de muerte de la cual muchos países no parecen hacer públicos datos fiables.
  
  Con estas conclusiones defendemos que el suicidio debe dejar de ser un tabú social, y se deben hacer campañas de prevención y apoyo a la salud mental, especialmente en jóvenes y en varones.
+ 
+ Por último, adjuntamos imágenes que corresponden a noticias actuales que hablan sobre el tema tratado:
  
 ```{r final, echo=FALSE, out.width = '50%'}
 knitr::include_graphics("image001.jpg")
