@@ -15,7 +15,9 @@ Hemos comenzado por __dividir__ las diferentes causas de muerte para así dejar
 los datos relacionados con suicidio, ya que su análisis es el obetivo de este 
 trabajo. Posteriormente hemos separado los datos de CyL en sexo, edad y provincia, 
 los datos nacionales en sexo, edad y año y los internacionales en sexo, edad y 
-nacionalidad para hacer comparaciones con cada uno de los factores.
+nacionalidad para hacer comparaciones con cada uno de los factores. Posteriormente se ha
+repetido este proceso con los datos nacionales de los últimos 40 años, y tras esto
+con los datos internacionales correspondientes a 2019, el año en el que se centra este trabajo.
 
 El siguiente paso que hemos dado ha sido **graficar** algunos ejemplos para así demostrar
 de una forma visual, las conclusiones a las que hemos llegado.
