@@ -99,6 +99,8 @@ Internacionales_Nacionalidad_Sexo_filtrados <- left_join(df_nacionalidades, Inte
 ggplot(data = Internacionales_Nacionalidad_Sexo_filtrados, aes(x = Nacionalidad, y = Total, fill = Sexo)) +
   geom_col(position = "dodge")
 ```
+Imagen 1. Gráfica de datos correspondiente a los 5 países seleccionados como muestra
+
 
 #### Estudio datos Castilla y León
 En el caso de los datos referentes a Castilla y León hemos querido incidir en la separación por sexo y edad, los datos revelan una significativamente mayor tasa de suicidio dentro del sexo masculino, y unos datos que no coinciden con las pirámides poblacionales referentes a Castilla y León en 2019, dado que encontramos una tasa mucho más alta de lo esperable en edades relativamente jóvenes.
@@ -116,6 +118,7 @@ ggplot(datosPiramide, aes(x = Edad,fill = Sexo,
   coord_flip()
 
 ```
+Imagen 2. Gráfica con los datos poblacionales de Castilla y León para su comparación con los de suicidio
 
 
 ```{r, fig.width=12, fig.height=7, warning=FALSE, message=FALSE}
@@ -157,8 +160,10 @@ ggplot(data = Cyl_Sexo_Edades, aes(x = Edad, y = Total, fill = Sexo)) +
 
 
 ```
+Imagen 3. Gráfica correspondiente a los datos de suicidio Castilla y León en el año 2019
 
 
+Al comparar los datos se obtiene que no necesariamente los grupos poblacionales más grandes son los que mayor tasa presentan, lo que puede interpretarse como una factor de peligrosidad en edades tempranas del desarrollo (sobretodo adolescentes).
 
 ```{r, fig.width=12, fig.height=7, warning=FALSE, message=FALSE}
 
@@ -171,6 +176,11 @@ Cyl_provincia<-
 ggplot(data = Cyl_provincia, aes(x = Provincias, y = Total, fill = Sexo)) +
   geom_col(position ='dodge')
 ```
+
+
+Imagen 4. Gráfica descriptiva de los datos separados por provincias.
+
+En los datos separados por provincias se observa que no necesariamente aquellas provincias más pobladas son las que tienen mayores tasas de suicidio, observable por ejemplo en la comparación entre Valladolid y León.
 
 #### Estudio datos nacionales
 A la hora de trabajar con los datos nacionales hemos tomado la decisión de filtrar los datos posteriores a 2005, dado que los anteriores sospechamos que son una acumulación puesto que son cifras dudosas.
@@ -221,6 +231,9 @@ ggplot(data = Nacionales_Sexo_Edades, aes(x = Edad, y = Total, fill = Sexo)) +
   geom_col(position = "dodge") 
 ```
 
+Imagen 5. Gráfica relacionada con los datos nacionales divididos por edades que responden al año 2019
+
+
 
 Ahora nos centramos en un  rango de edad concreto y lo analizamos a lo largo de los años, desde el 2005 al 2020 y comprobamos como a medida que pasan los años el número de suicidios incrementa tanto en hombres como en mujeres.
 
@@ -234,6 +247,9 @@ Nacionales_50 <- Nacionales_suicidio%>%
 ggplot(data = Nacionales_50, aes(x = Periodo, y = Total, fill = Sexo)) +
 geom_col(position = "dodge") + geom_smooth(method = "loess", colour = "red")
 ```
+
+Imagen 6. Gráfica de análisis del progreso a lo largo del tiempo de la franja de edad entre 50 y 54 años
+
 
 ## Interpretación de los datos
  Pese a que los datos no están suficientemente analizados como para sacar conclusiones contundentes, este análisis de datos nos permite concluir que **el suicidio es una causa de muerte que se incrementa con el paso de los años**, se da especialmente en __hombres__, cada vez más en **jóvenes** y más en **países con niveles socioeconómicos medios-altos**, además de ser una causa de muerte de la cual muchos países no parecen hacer públicos datos fiables.
