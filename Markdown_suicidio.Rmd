@@ -103,15 +103,23 @@ ggplot(data = Internacionales_Nacionalidad_Sexo_filtrados, aes(x = Nacionalidad,
 #### Estudio datos Castilla y León
 En el caso de los datos referentes a Castilla y León hemos querido incidir en la separación por sexo y edad, los datos revelan una significativamente mayor tasa de suicidio dentro del sexo masculino, y unos datos que no coinciden con las pirámides poblacionales referentes a Castilla y León en 2019, dado que encontramos una tasa mucho más alta de lo esperable en edades relativamente jóvenes.
 
-```{r cyl2, echo=FALSE, out.width = '100%'}
-knitr::include_graphics("image002.jpg")
+```{r, fig.width=12, fig.height=7, warning=FALSE, message=FALSE}
+datosPiramide <- read_delim("./Input/poblacion.csv",
+  delim = ";", escape_double = FALSE, trim_ws = TRUE)
+
+names (datosPiramide) = c("Comunidad", "Edad", "Sexo", "Periodo", "Total")
+
+ggplot(datosPiramide, aes(x = Edad,fill = Sexo,
+                          y = ifelse(Sexo == "Hombres", - Total, Total)))+
+  geom_bar(stat = "identity")+
+  scale_y_continuous(limits = max(datosPiramide$Total)*c(-1,1),labels = abs)+
+  coord_flip()
+
 ```
 
 
 ```{r, fig.width=12, fig.height=7, warning=FALSE, message=FALSE}
-library(ggplot2)
-library(readr)
-library(tidyverse)
+
 Cyl_2019 <- read_delim("./INPUT/02008.csv", 
                                    delim = ";", escape_double = FALSE, trim_ws = TRUE)
 
@@ -146,6 +154,7 @@ Cyl_Sexo_Edades$Edad[ Cyl_Sexo_Edades$Edad == "De 95 años y más"] <- "95 o má
 
 ggplot(data = Cyl_Sexo_Edades, aes(x = Edad, y = Total, fill = Sexo)) +
   geom_col(position = "dodge")
+
 
 ```
 
@@ -234,11 +243,11 @@ geom_col(position = "dodge") + geom_smooth(method = "loess", colour = "red")
  Por último, adjuntamos imágenes que corresponden a noticias actuales que hablan sobre el tema tratado:
  
 ```{r final, echo=FALSE, out.width = '50%'}
-knitr::include_graphics("image001.jpg")
-knitr::include_graphics("image003.jpg")
+knitr::include_graphics("./Input/Imagenes adicionales/image001.jpg")
+knitr::include_graphics("./Input/Imagenes adicionales/image003.jpg")
 ``` 
 ```{r final2, echo=FALSE, out.width = '100%'}
-knitr::include_graphics("image004.jpg")
+knitr::include_graphics("./Input/Imagenes adicionales/image004.jpg")
 ``` 
  
  Algunos enlaces de interés sobre el tema trabajado y de carácter informativo o de apoyo:
